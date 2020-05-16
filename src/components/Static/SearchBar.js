@@ -6,30 +6,20 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 export class SearchBar extends Component {
   render() {
     return (
-      <Wrapper>
-        <SearchBox>
-          <SearchInput
-            type="text"
-            placeholder="Search for a movie..."
-          ></SearchInput>
-          <Button>
-            <StyledIcon icon={faSearch}></StyledIcon>
-          </Button>
-        </SearchBox>
-      </Wrapper>
+      <SearchBox>
+        <SearchInput
+          type="text"
+          placeholder="Search for a movie..."
+        ></SearchInput>
+        <Button>
+          <StyledIcon icon={faSearch}></StyledIcon>
+        </Button>
+      </SearchBox>
     );
   }
 }
 
 export default SearchBar;
-
-const Wrapper = styled.div`
-  position: fixed;
-  right: 0;
-  top: 0;
-  background: pink;
-  left: 250px;
-`;
 
 const SearchBox = styled.div`
   position: absolute;

@@ -2,12 +2,16 @@ import React, { Component } from "react";
 import { BrowserRouter, Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
-import { initializeState } from "../../actions/";
+import { initializeState } from "../actions";
 
-import Navbar from "./Navbar";
-import SearchBar from "./SearchBar";
-import MoviesList from "../List/MoviesList";
-import Spinner from "../List/Spinner";
+import Navbar from "./Static/Navbar";
+import SearchBar from "./Static/SearchBar";
+import Popular from "../components/Lists/Popular";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { far } from "@fortawesome/free-regular-svg-icons";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
+
+library.add(far, faStar);
 
 class App extends Component {
   componentDidMount() {
@@ -19,11 +23,11 @@ class App extends Component {
       <BrowserRouter>
         <Navbar />
         <SearchBar />
-        <Spinner />
+
         <Route path="/">
           <Redirect to="/discover/popular" />
         </Route>
-        <Route path="/discover/popular" component={MoviesList}></Route>
+        <Route path="/discover/popular" component={Popular}></Route>
       </BrowserRouter>
     );
   }

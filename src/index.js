@@ -7,7 +7,7 @@ import GlobalStyle from "../src/utils/globals";
 import theme from "../src/utils/theme";
 import configureStore from "./store";
 
-import App from "./components/App/App";
+import App from "./components/App";
 
 ReactDOM.render(
   <Provider store={configureStore()}>

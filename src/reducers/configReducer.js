@@ -19,6 +19,11 @@ export default (state = initialState, action) => {
         ...state,
         genres: action.payload,
       };
+    case TYPES.GET_CONFIG:
+      return {
+        ...state,
+        tmdb_config: action.payload,
+      };
     default:
       return state;
   }
