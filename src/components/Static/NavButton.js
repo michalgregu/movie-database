@@ -24,7 +24,7 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps)(NavButton);
 
 const Button = styled.button`
-  height: 36px;
+  height: 28px;
   display: flex;
   justify-content: flex-start;
   outline: none;
@@ -33,7 +33,7 @@ const Button = styled.button`
   margin-bottom: 5px;
   background: transparent;
   cursor: pointer;
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   font-weight: 800;
 
   border: ${(props) =>
@@ -42,7 +42,7 @@ const Button = styled.button`
     props.selected ? props.theme.colors.main : props.theme.colors.lightgray};
 
   &:hover {
-    border: 1px solid gray;
+    border: 1px solid ${(props) => props.theme.colors.lightgray};
   }
 `;
 

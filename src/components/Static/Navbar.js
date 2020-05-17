@@ -23,7 +23,7 @@ class Navbar extends Component {
 export default Navbar;
 
 const Nav = styled.div`
-  width: 250px;
+  width: 230px;
   position: fixed;
   overflow-y: scroll;
   overflow: -moz-scrollbars-none;

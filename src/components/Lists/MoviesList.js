@@ -26,10 +26,10 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps)(MoviesList);
 
 const Wrapper = styled.div`
-  margin-left: 280px;
+  margin-left: 240px;
   margin-right: 15px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(10rem, 25rem));
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 23rem));
   grid-gap: 4rem 2rem;
   padding: 50px;
   align-content: space-between;
