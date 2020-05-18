@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
 
-import Spinner from "./Spinner";
 import MovieItem from "./MovieItem";
 
 export class MoviesList extends Component {

@@ -6,7 +6,7 @@ import { initializeState } from "../actions";
 
 import Navbar from "./Static/Navbar";
 import SearchBar from "./Static/SearchBar";
-import Popular from "../components/Lists/Popular";
+import Discover from "./Lists/Discover";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { far } from "@fortawesome/free-regular-svg-icons";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
@@ -27,7 +27,7 @@ class App extends Component {
         <Route path="/">
           <Redirect to="/discover/popular" />
         </Route>
-        <Route path="/discover/popular" component={Popular}></Route>
+        <Route path="/discover/:name" component={Discover}></Route>
       </BrowserRouter>
     );
   }

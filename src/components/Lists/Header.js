@@ -5,7 +5,7 @@ export class Header extends Component {
   render() {
     return (
       <Wrapper>
-        <H1>POPULAR</H1>
+        <H1>{this.props.name.toUpperCase()}</H1>
         <H3>MOVIES</H3>
       </Wrapper>
     );

@@ -21,12 +21,14 @@ export const getGenres = () => async (dispatch) => {
 };
 
 export const getDiscover = (name) => async (dispatch) => {
+  dispatch({ type: TYPES.SET_MOVIES_LOADING });
   const response = await tmdb.get(`/movie/${name.toLowerCase()}`, {
     params: {
       api_key: KEY,
     },
   });
   dispatch({ type: TYPES.FETCH_MOVIES_DISCOVER, payload: response.data });
+  dispatch({ type: TYPES.REMOVE_MOVIES_LOADING });
 };
 
 export const getConfig = () => async (dispatch) => {
@@ -36,4 +38,14 @@ export const getConfig = () => async (dispatch) => {
     },
   });
   dispatch({ type: TYPES.GET_CONFIG, payload: response.data });
+};
+
+export const nextPage = (name, page) => async (dispatch) => {
+  const response = await tmdb.get(`/movie/${name.toLowerCase()}`, {
+    params: {
+      api_key: KEY,
+      page,
+    },
+  });
+  dispatch({ type: TYPES.NEXT_PAGE, payload: response.data });
 };

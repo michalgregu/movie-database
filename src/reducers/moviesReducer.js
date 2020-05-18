@@ -7,6 +7,21 @@ export default (state = { loading: true }, action) => {
         ...state,
         ...action.payload,
       };
+    case TYPES.SET_MOVIES_LOADING:
+      return {
+        ...state,
+        loading: true,
+      };
+    case TYPES.REMOVE_MOVIES_LOADING:
+      return {
+        ...state,
+        loading: false,
+      };
+    case TYPES.NEXT_PAGE:
+      return {
+        ...state,
+        movies: action.payload,
+      };
     default:
       return state;
   }
