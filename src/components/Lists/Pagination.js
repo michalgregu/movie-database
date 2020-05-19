@@ -1,23 +1,22 @@
-import React, { Component } from "react";
+import React, { Component, Suspense } from "react";
 import { connect } from "react-redux";
 
 import styled from "styled-components";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 
+import SpinnerSmall from "./SpinnerSmall";
 import { changePage } from "../../actions";
-import Button from "./Button";
+const Button = React.lazy(() => import("./Button"));
 
 export class Pagination extends Component {
   render = () => {
     const { page, total_pages } = this.props.movies;
 
-    if (this.props.movies.loading === true) {
-      return <Wrapper>Loading...</Wrapper>;
-    } else {
-      return (
-        <Wrapper page={page} total_pages={total_pages}>
-          {page > 1 && (
+    return (
+      <Wrapper page={page} total_pages={total_pages}>
+        {page > 1 && (
+          <Suspense fallback={<SpinnerSmall />}>
             <Button
               clicked={() =>
                 this.props.changePage(this.props.selected, page - 1)
@@ -27,8 +26,10 @@ export class Pagination extends Component {
               solid
               name={`Page ${page - 1}`}
             />
-          )}
-          {total_pages > 1 && page < total_pages && (
+          </Suspense>
+        )}
+        {total_pages > 1 && page < total_pages && (
+          <Suspense fallback={<SpinnerSmall />}>
             <Button
               clicked={() =>
                 this.props.changePage(this.props.selected, page + 1)
@@ -37,10 +38,10 @@ export class Pagination extends Component {
               solid
               name={`Page ${page + 1}`}
             />
-          )}
-        </Wrapper>
-      );
-    }
+          </Suspense>
+        )}
+      </Wrapper>
+    );
   };
 }
 

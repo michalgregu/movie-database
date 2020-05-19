@@ -1,15 +1,25 @@
 import React, { Component } from "react";
 import styled from "styled-components";
+import { push } from "connected-react-router";
+import { connect } from "react-redux";
+import { animateScroll as scroll } from "react-scroll";
 
+import { getDiscover } from "../../actions";
 import Discover from "./DiscoverTags";
 import Genres from "./GenresTags";
 import Logo from "../../svg/movie-time-logo.svg";
 
 class Navbar extends Component {
+  clickHome = () => {
+    scroll.scrollToTop({ smooth: "easeOutQuint" });
+    this.props.push("/discover/popular");
+    this.props.getDiscover(this.props.selected);
+  };
+
   render() {
     return (
       <Nav>
-        <LogoWrapper>
+        <LogoWrapper onClick={this.clickHome}>
           <Img src={Logo} />
         </LogoWrapper>
         <Discover />
@@ -20,7 +30,13 @@ class Navbar extends Component {
   }
 }
 
-export default Navbar;
+const mapStateToProps = (state) => {
+  return {
+    selected: state.config.selected,
+  };
+};
+
+export default connect(mapStateToProps, { push, getDiscover })(Navbar);
 
 const Nav = styled.div`
   width: 230px;

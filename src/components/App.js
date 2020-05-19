@@ -6,12 +6,12 @@ import { far } from "@fortawesome/free-regular-svg-icons";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 
 import history from "../history";
-import { initializeState, getDiscover } from "../actions";
+import { initializeState } from "../actions";
 
 import Navbar from "./Static/Navbar";
 import SearchBar from "./Static/SearchBar";
 import Spinner from "./Lists/Spinner";
-
+// import Discover from './Lists/Discover'
 const Discover = React.lazy(() => import("./Lists/Discover"));
 
 library.add(far, faStar);
@@ -20,14 +20,7 @@ class App extends Component {
   componentDidMount() {
     this.props.initializeState(this.props.selected);
   }
-  componentDidUpdate() {
-    window.onpopstate = () => {
-      this.props.getDiscover(
-        this.props.selected,
-        this.props.location.query.page
-      );
-    };
-  }
+
   render() {
     return (
       <Router history={history}>
@@ -46,10 +39,9 @@ class App extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return { selected: state.config.selected, location: state.router.location };
+  return { selected: state.config.selected };
 };
 
 export default connect(mapStateToProps, {
   initializeState,
-  getDiscover,
 })(App);
