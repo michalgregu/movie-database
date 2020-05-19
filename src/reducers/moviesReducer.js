@@ -22,6 +22,7 @@ export default (state = { loading: true }, action) => {
         ...state,
         ...action.payload,
       };
+
     default:
       return state;
   }

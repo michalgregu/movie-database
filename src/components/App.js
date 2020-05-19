@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Router, Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
+import { goBack } from "../actions";
 
 import history from "../history";
 import { initializeState } from "../actions";
@@ -18,7 +19,11 @@ class App extends Component {
   componentDidMount() {
     this.props.initializeState(this.props.selected);
   }
-
+  componentDidUpdate() {
+    window.onpopstate = (e) => {
+      this.props.goBack();
+    };
+  }
   render() {
     return (
       <Router history={history}>
@@ -38,4 +43,4 @@ const mapStateToProps = (state) => {
   return { selected: state.config.selected };
 };
 
-export default connect(mapStateToProps, { initializeState })(App);
+export default connect(mapStateToProps, { initializeState, goBack })(App);

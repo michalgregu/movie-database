@@ -1,6 +1,6 @@
 import * as TYPES from "./types";
 import tmdb from "../apis/tmdb";
-import history from "../history";
+import { push } from "connected-react-router";
 
 const KEY = "98f9ea95150a1fbb9c37be468dd850a9";
 
@@ -42,7 +42,7 @@ export const getConfig = () => async (dispatch) => {
 };
 
 export const changePage = (name, page) => async (dispatch) => {
-  history.push(`/discover/popular?page=${page}`);
+  dispatch(push(`/discover/popular?page=${page}`));
   const response = await tmdb.get(`/movie/${name.toLowerCase()}`, {
     params: {
       api_key: KEY,
@@ -50,4 +50,8 @@ export const changePage = (name, page) => async (dispatch) => {
     },
   });
   dispatch({ type: TYPES.CHANGE_PAGE, payload: response.data });
+};
+
+export const goBack = () => async (dispatch) => {
+  dispatch(goBack());
 };
