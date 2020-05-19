@@ -1,18 +1,18 @@
-import React, { Component, Suspense } from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
+import LazyLoad from "react-lazyload";
 
 import SpinnerSmall from "./SpinnerSmall";
-
-const MovieItem = React.lazy(() => import("./MovieItem"));
+import MovieItem from "./MovieItem";
 
 export class MoviesList extends Component {
   renderList = () => {
     if (this.props.list) {
       return this.props.list.map((item) => (
-        <Suspense fallback={<SpinnerSmall />}>
+        <LazyLoad height={100} offset={-100} placeholder={<SpinnerSmall />}>
           <MovieItem details={item} key={item.id} />
-        </Suspense>
+        </LazyLoad>
       ));
     }
   };
@@ -33,6 +33,7 @@ const Wrapper = styled.div`
   margin-right: 15px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(10rem, 23rem));
+  grid-template-rows: repeat(auto-fit, minmax(41rem, auto));
   grid-gap: 4rem 2rem;
   padding: 50px;
   align-content: space-between;

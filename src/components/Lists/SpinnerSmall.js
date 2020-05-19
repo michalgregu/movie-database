@@ -30,7 +30,7 @@ const webkitScaleout = keyframes`
 const Spinner = styled.div`
   width: 40px;
   height: 40px;
-  margin: 100px auto;
+  margin: auto;
   background-color: #333;
 
   border-radius: 100%;

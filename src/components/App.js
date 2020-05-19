@@ -1,4 +1,4 @@
-import React, { Component, Suspense } from "react";
+import React, { Component } from "react";
 import { Router, Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -11,8 +11,7 @@ import { initializeState } from "../actions";
 import Navbar from "./Static/Navbar";
 import SearchBar from "./Static/SearchBar";
 import Spinner from "./Lists/Spinner";
-// import Discover from './Lists/Discover'
-const Discover = React.lazy(() => import("./Lists/Discover"));
+import Discover from "./Lists/Discover";
 
 library.add(far, faStar);
 
@@ -30,9 +29,8 @@ class App extends Component {
         <Route path="/">
           <Redirect to="/discover/popular" />
         </Route>
-        <Suspense fallback={Spinner}>
-          <Route path="/discover/:name" component={Discover}></Route>
-        </Suspense>
+
+        <Route path="/discover/:name" component={Discover}></Route>
       </Router>
     );
   }
