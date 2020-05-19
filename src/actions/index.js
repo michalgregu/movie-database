@@ -1,5 +1,6 @@
 import * as TYPES from "./types";
 import tmdb from "../apis/tmdb";
+import history from "../history";
 
 const KEY = "98f9ea95150a1fbb9c37be468dd850a9";
 
@@ -40,12 +41,13 @@ export const getConfig = () => async (dispatch) => {
   dispatch({ type: TYPES.GET_CONFIG, payload: response.data });
 };
 
-export const nextPage = (name, page) => async (dispatch) => {
+export const changePage = (name, page) => async (dispatch) => {
+  history.push(`/discover/popular?page=${page}`);
   const response = await tmdb.get(`/movie/${name.toLowerCase()}`, {
     params: {
       api_key: KEY,
       page,
     },
   });
-  dispatch({ type: TYPES.NEXT_PAGE, payload: response.data });
+  dispatch({ type: TYPES.CHANGE_PAGE, payload: response.data });
 };

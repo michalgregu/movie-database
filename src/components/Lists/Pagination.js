@@ -1,14 +1,15 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+
 import styled from "styled-components";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 
+import { changePage } from "../../actions";
 import Button from "./Button";
 
 export class Pagination extends Component {
-  render() {
+  render = () => {
     const { page, total_pages } = this.props.movies;
 
     if (this.props.movies.loading === true) {
@@ -17,35 +18,37 @@ export class Pagination extends Component {
       return (
         <Wrapper page={page} total_pages={total_pages}>
           {page > 1 && (
-            <StyledLink to={`${process.env.PUBLIC_URL}?page=${page - 1}`}>
-              <Button
-                iconLeft
-                icon={<ArrowBackIcon />}
-                solid
-                name={`Page ${page - 1}`}
-              />
-            </StyledLink>
+            <Button
+              clicked={() =>
+                this.props.changePage(this.props.selected, page - 1)
+              }
+              iconLeft
+              icon={<ArrowBackIcon />}
+              solid
+              name={`Page ${page - 1}`}
+            />
           )}
           {total_pages > 1 && page < total_pages && (
-            <StyledLink to={`${process.env.PUBLIC_URL}?page=${page + 1}`}>
-              <Button
-                icon={<ArrowForwardIcon />}
-                solid
-                name={`Page ${page + 1}`}
-              />
-            </StyledLink>
+            <Button
+              clicked={() =>
+                this.props.changePage(this.props.selected, page + 1)
+              }
+              icon={<ArrowForwardIcon />}
+              solid
+              name={`Page ${page + 1}`}
+            />
           )}
         </Wrapper>
       );
     }
-  }
+  };
 }
 
 const mapStateToProps = (state) => {
-  return { movies: state.movies };
+  return { movies: state.movies, selected: state.config.selected };
 };
 
-export default connect(mapStateToProps)(Pagination);
+export default connect(mapStateToProps, { changePage })(Pagination);
 
 const Wrapper = styled.div`
   margin-right: 80px;
@@ -61,8 +64,4 @@ const Wrapper = styled.div`
       return "space-between";
     }
   }};
-`;
-
-const StyledLink = styled(Link)`
-  text-decoration: none;
 `;

@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import { BrowserRouter, Route, Redirect } from "react-router-dom";
+import { Router, Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
+import history from "../history";
 import { initializeState } from "../actions";
 
 import Navbar from "./Static/Navbar";
@@ -20,7 +21,7 @@ class App extends Component {
 
   render() {
     return (
-      <BrowserRouter>
+      <Router history={history}>
         <Navbar />
         <SearchBar />
 
@@ -28,7 +29,7 @@ class App extends Component {
           <Redirect to="/discover/popular" />
         </Route>
         <Route path="/discover/:name" component={Discover}></Route>
-      </BrowserRouter>
+      </Router>
     );
   }
 }

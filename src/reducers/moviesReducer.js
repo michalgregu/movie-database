@@ -17,10 +17,10 @@ export default (state = { loading: true }, action) => {
         ...state,
         loading: false,
       };
-    case TYPES.NEXT_PAGE:
+    case TYPES.CHANGE_PAGE:
       return {
         ...state,
-        movies: action.payload,
+        ...action.payload,
       };
     default:
       return state;

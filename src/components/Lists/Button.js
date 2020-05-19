@@ -5,7 +5,11 @@ export class Button extends Component {
   render() {
     const { icon, name, solid, iconLeft } = this.props;
     return (
-      <StyledButton iconLeft={iconLeft} solid={solid}>
+      <StyledButton
+        onClick={this.props.clicked}
+        iconLeft={iconLeft}
+        solid={solid}
+      >
         {icon}
         {name}
       </StyledButton>
