@@ -21,11 +21,12 @@ export const getGenres = () => async (dispatch) => {
   dispatch({ type: TYPES.GET_GENRES, payload: response.data.genres });
 };
 
-export const getDiscover = (name) => async (dispatch) => {
+export const getDiscover = (name, page = 1) => async (dispatch) => {
   dispatch({ type: TYPES.SET_MOVIES_LOADING });
   const response = await tmdb.get(`/movie/${name.toLowerCase()}`, {
     params: {
       api_key: KEY,
+      page,
     },
   });
   dispatch({ type: TYPES.FETCH_MOVIES_DISCOVER, payload: response.data });
@@ -41,7 +42,7 @@ export const getConfig = () => async (dispatch) => {
   dispatch({ type: TYPES.GET_CONFIG, payload: response.data });
 };
 
-export const changePage = (name, page) => async (dispatch) => {
+export const changePage = (name, page = 1) => async (dispatch) => {
   dispatch(push(`/discover/popular?page=${page}`));
   const response = await tmdb.get(`/movie/${name.toLowerCase()}`, {
     params: {
@@ -50,8 +51,4 @@ export const changePage = (name, page) => async (dispatch) => {
     },
   });
   dispatch({ type: TYPES.CHANGE_PAGE, payload: response.data });
-};
-
-export const goBack = () => async (dispatch) => {
-  dispatch(goBack());
 };

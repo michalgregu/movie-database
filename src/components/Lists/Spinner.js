@@ -42,7 +42,7 @@ const SpinnerWrapper = styled.div`
   height: 80px;
   position: relative;
   text-align: center;
-
+  opacity: 0.4;
   -webkit-animation: ${webkitRotate} 2s infinite linear;
   animation: ${rotate} 2s infinite linear;
 `;

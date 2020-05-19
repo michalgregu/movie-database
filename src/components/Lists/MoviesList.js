@@ -1,14 +1,18 @@
-import React, { Component } from "react";
+import React, { Component, Suspense } from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
 
-import MovieItem from "./MovieItem";
+import SpinnerSmall from "./SpinnerSmall";
+
+const MovieItem = React.lazy(() => import("./MovieItem"));
 
 export class MoviesList extends Component {
   renderList = () => {
     if (this.props.list) {
       return this.props.list.map((item) => (
-        <MovieItem details={item} key={item.id} />
+        <Suspense fallback={<SpinnerSmall />}>
+          <MovieItem details={item} key={item.id} />
+        </Suspense>
       ));
     }
   };

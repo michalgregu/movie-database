@@ -1,17 +1,23 @@
-import React, { Component } from "react";
+import React, { Component, Suspense } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
 
 import Header from "./Header";
-import MoviesList from "./MoviesList";
+// import MoviesList from "./MoviesList";
 import Pagination from "./Pagination";
+import Spinner from "./Spinner";
+
+const MoviesList = React.lazy(() => import("./MoviesList"));
 
 export class Discover extends Component {
   render() {
     return (
       <Wrapper>
         <Header name={this.props.selected} />
-        <MoviesList />
+        <Suspense fallback={<Spinner />}>
+          <MoviesList />
+        </Suspense>
+
         <Pagination />
       </Wrapper>
     );
