@@ -1,6 +1,7 @@
 import * as TYPES from "./types";
 import tmdb from "../apis/tmdb";
 import { push } from "connected-react-router";
+import { animateScroll as scroll } from "react-scroll";
 
 const KEY = "98f9ea95150a1fbb9c37be468dd850a9";
 
@@ -44,6 +45,7 @@ export const getConfig = () => async (dispatch) => {
 
 export const changePage = (name, page = 1) => async (dispatch) => {
   dispatch(push(`/discover/popular?page=${page}`));
+  scroll.scrollToTop({ smooth: "easeOutQuint" });
   const response = await tmdb.get(`/movie/${name.toLowerCase()}`, {
     params: {
       api_key: KEY,
