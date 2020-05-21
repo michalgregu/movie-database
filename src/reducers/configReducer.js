@@ -1,6 +1,6 @@
 import * as TYPES from "../actions/types";
 
-const initialState = { loading: true, selected: "Popular" };
+const initialState = { loading: true, selected: "popular" };
 
 export default (state = initialState, action) => {
   switch (action.type) {
@@ -23,6 +23,11 @@ export default (state = initialState, action) => {
       return {
         ...state,
         tmdb_config: action.payload,
+      };
+    case TYPES.SET_SELECTED:
+      return {
+        ...state,
+        selected: action.payload,
       };
     default:
       return state;

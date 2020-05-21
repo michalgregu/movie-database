@@ -10,8 +10,8 @@ import { initializeState } from "../actions";
 
 import Navbar from "./Static/Navbar";
 import SearchBar from "./Static/SearchBar";
-import Spinner from "./Lists/Spinner";
 import Discover from "./Lists/Discover";
+import Genres from "./Lists/Genres";
 
 library.add(far, faStar);
 
@@ -31,6 +31,7 @@ class App extends Component {
         </Route>
 
         <Route path="/discover/:name" component={Discover}></Route>
+        <Route path="/genres/:name" component={Genres}></Route>
       </Router>
     );
   }

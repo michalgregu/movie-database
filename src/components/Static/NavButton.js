@@ -2,12 +2,25 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+import { setSelected } from "../../actions";
 import { connect } from "react-redux";
 
 export class NavButton extends Component {
+  onGenresClick = () => {
+    this.props.setSelected(this.props.name);
+  };
+
   render() {
     return (
-      <Button selected={this.props.name === this.props.selected ? true : false}>
+      <Button
+        onClick={this.onGenresClick}
+        selected={
+          this.props.name.toLowerCase().replace(/ /g, "_") ===
+          this.props.selected
+            ? true
+            : false
+        }
+      >
         <StyledIcon icon={this.props.icon} />
         {this.props.name}
       </Button>
@@ -21,7 +34,7 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(NavButton);
+export default connect(mapStateToProps, { setSelected })(NavButton);
 
 const Button = styled.button`
   height: 28px;

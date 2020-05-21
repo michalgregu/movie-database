@@ -4,15 +4,16 @@ import { push } from "connected-react-router";
 import { connect } from "react-redux";
 import { animateScroll as scroll } from "react-scroll";
 
-import { getDiscover } from "../../actions";
+import { getDiscover, setSelected } from "../../actions";
 import Discover from "./DiscoverTags";
 import Genres from "./GenresTags";
 import Logo from "../../svg/movie-time-logo.svg";
 
 class Navbar extends Component {
-  clickHome = () => {
+  clickHome = async () => {
     scroll.scrollToTop({ smooth: "easeOutQuint" });
     this.props.push("/discover/popular");
+    await this.props.setSelected("popular");
     this.props.getDiscover(this.props.selected);
   };
 
@@ -36,7 +37,9 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { push, getDiscover })(Navbar);
+export default connect(mapStateToProps, { push, getDiscover, setSelected })(
+  Navbar
+);
 
 const Nav = styled.div`
   width: 230px;

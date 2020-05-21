@@ -13,6 +13,15 @@ export const initializeState = (name) => async (dispatch) => {
   dispatch({ type: TYPES.REMOVE_LOADING });
 };
 
+export const setSelected = (name) => async (dispatch) => {
+  scroll.scrollToTop({ smooth: "easeOutQuint" });
+  dispatch({
+    type: TYPES.SET_SELECTED,
+    payload: name.toLowerCase().replace(/ /g, "_"),
+  });
+  await dispatch(getDiscover(name.toLowerCase().replace(/ /g, "_")));
+};
+
 export const getGenres = () => async (dispatch) => {
   const response = await tmdb.get("/genre/movie/list", {
     params: {

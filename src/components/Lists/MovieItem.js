@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { connect } from "react-redux";
 import Rating from "react-rating";
 
+import poster from "../../svg/300x442.png";
 import StarIcon from "@material-ui/icons/Star";
 import StarBorderIcon from "@material-ui/icons/StarBorder";
 
@@ -15,7 +16,7 @@ export class MovieItem extends Component {
     return (
       <Wrapper>
         <ImgWrapper>
-          <Img src={path} />
+          <Img src={poster_path !== null ? path : poster} />
         </ImgWrapper>
         <Info>
           <Name>{title}</Name>
