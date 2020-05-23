@@ -2,6 +2,8 @@ import React, { Component, Suspense } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import { getDiscover } from "../../actions";
+import { push } from "connected-react-router";
+import { animateScroll as scroll } from "react-scroll";
 
 import Header from "./Header";
 import Pagination from "./Pagination";
@@ -18,6 +20,21 @@ export class Discover extends Component {
       );
     };
   }
+
+  backClick = () => {
+    const newPage = this.props.page - 1;
+    this.props.push(`/discover/popular?page=${newPage}`);
+    scroll.scrollToTop({ smooth: "easeOutQuint" });
+    this.props.getDiscover(this.props.selected, newPage);
+  };
+
+  nextClick = () => {
+    const newPage = this.props.page + 1;
+    this.props.push(`/discover/popular?page=${newPage}`);
+    scroll.scrollToTop({ smooth: "easeOutQuint" });
+    this.props.getDiscover(this.props.selected, newPage);
+  };
+
   render() {
     return (
       <Wrapper>
@@ -25,7 +42,10 @@ export class Discover extends Component {
         <Suspense fallback={<Spinner />}>
           <MoviesList />
         </Suspense>
-        <Pagination />
+        <Pagination
+          onClickPrevious={this.backClick}
+          onClickNext={this.nextClick}
+        />
       </Wrapper>
     );
   }
@@ -34,11 +54,12 @@ export class Discover extends Component {
 const mapStateToProps = (state) => {
   return {
     selected: state.config.selected,
+    page: state.movies.page,
     location: state.router.location,
   };
 };
 
-export default connect(mapStateToProps, { getDiscover })(Discover);
+export default connect(mapStateToProps, { push, getDiscover })(Discover);
 
 const Wrapper = styled.div`
   width: 100%;

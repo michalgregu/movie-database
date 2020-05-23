@@ -6,7 +6,7 @@ export class Button extends Component {
     const { icon, name, solid, iconLeft } = this.props;
     return (
       <StyledButton
-        onClick={this.props.clicked}
+        onClick={this.props.onClick}
         iconLeft={iconLeft}
         solid={solid}
       >

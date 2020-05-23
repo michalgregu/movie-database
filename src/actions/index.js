@@ -1,6 +1,6 @@
 import * as TYPES from "./types";
 import tmdb from "../apis/tmdb";
-import { push } from "connected-react-router";
+// import { push } from "connected-react-router";
 import { animateScroll as scroll } from "react-scroll";
 
 const KEY = "98f9ea95150a1fbb9c37be468dd850a9";
@@ -30,13 +30,16 @@ export const getListOfGenres = () => async (dispatch) => {
   dispatch({ type: TYPES.GET_GENRES, payload: response.data.genres });
 };
 
-export const getGenres = (id, sortBy = "popularity") => async (dispatch) => {
+export const getGenres = (id, page = 1, sortBy = "popularity") => async (
+  dispatch
+) => {
   dispatch({ type: TYPES.SET_MOVIES_LOADING });
   const response = await tmdb.get("/discover/movie", {
     params: {
       api_key: KEY,
       with_genres: id,
       sort_by: sortBy + ".desc",
+      page,
     },
   });
   dispatch({ type: TYPES.FETCH_MOVIES_GENRES, payload: response.data });
@@ -65,17 +68,4 @@ export const getConfig = () => async (dispatch) => {
     },
   });
   dispatch({ type: TYPES.GET_CONFIG, payload: response.data });
-};
-
-export const changePage = (name, page = 1) => async (dispatch) => {
-  dispatch(push(`/discover/popular?page=${page}`));
-  scroll.scrollToTop({ smooth: "easeOutQuint" });
-
-  const response = await tmdb.get(`/movie/${name.toLowerCase()}`, {
-    params: {
-      api_key: KEY,
-      page,
-    },
-  });
-  dispatch({ type: TYPES.CHANGE_PAGE, payload: response.data });
 };

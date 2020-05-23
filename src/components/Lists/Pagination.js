@@ -6,7 +6,6 @@ import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 
 import Button from "./Button";
-import { changePage } from "../../actions";
 
 export class Pagination extends Component {
   render = () => {
@@ -16,7 +15,7 @@ export class Pagination extends Component {
       <Wrapper page={page} total_pages={total_pages}>
         {page > 1 && (
           <Button
-            clicked={() => this.props.changePage(this.props.selected, page - 1)}
+            onClick={this.props.onClickPrevious}
             iconLeft
             icon={<ArrowBackIcon />}
             solid
@@ -25,7 +24,7 @@ export class Pagination extends Component {
         )}
         {total_pages > 1 && page < total_pages && (
           <Button
-            clicked={() => this.props.changePage(this.props.selected, page + 1)}
+            onClick={this.props.onClickNext}
             icon={<ArrowForwardIcon />}
             solid
             name={`Page ${page + 1}`}
@@ -37,10 +36,12 @@ export class Pagination extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return { movies: state.movies, selected: state.config.selected };
+  return {
+    movies: state.movies,
+  };
 };
 
-export default connect(mapStateToProps, { changePage })(Pagination);
+export default connect(mapStateToProps)(Pagination);
 
 const Wrapper = styled.div`
   margin-right: 80px;
