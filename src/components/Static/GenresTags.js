@@ -1,15 +1,24 @@
 import React, { Component } from "react";
 import styled from "styled-components";
+import { connect } from "react-redux";
+import { push } from "connected-react-router";
 import { faDotCircle } from "@fortawesome/free-solid-svg-icons";
 
+import { setSelected, getGenres } from "../../actions";
 import NavButton from "./NavButton";
-import { connect } from "react-redux";
 
 export class Genres extends Component {
+  onButtonClick = async (name, id) => {
+    await this.props.setSelected(name);
+    this.props.push(`/genres/${name.toLowerCase()}`);
+    this.props.getGenres(id);
+  };
+
   renderList = () => {
     if (this.props.genres) {
       return this.props.genres.map((item) => (
         <NavButton
+          onClick={this.onButtonClick}
           name={item.name}
           icon={faDotCircle}
           key={item.id}
@@ -30,10 +39,12 @@ export class Genres extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return { genres: state.config.genres };
+  return { genres: state.config.genres, selected: state.config.selected };
 };
 
-export default connect(mapStateToProps, {})(Genres);
+export default connect(mapStateToProps, { push, setSelected, getGenres })(
+  Genres
+);
 
 const Wrapper = styled.div`
   width: 200px;

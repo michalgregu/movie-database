@@ -8,7 +8,7 @@ const KEY = "98f9ea95150a1fbb9c37be468dd850a9";
 export const initializeState = (name) => async (dispatch) => {
   dispatch({ type: TYPES.SET_LOADING });
   await dispatch(getConfig());
-  await dispatch(getGenres());
+  await dispatch(getListOfGenres());
   await dispatch(getDiscover(name));
   dispatch({ type: TYPES.REMOVE_LOADING });
 };
@@ -19,10 +19,9 @@ export const setSelected = (name) => async (dispatch) => {
     type: TYPES.SET_SELECTED,
     payload: name.toLowerCase().replace(/ /g, "_"),
   });
-  await dispatch(getDiscover(name.toLowerCase().replace(/ /g, "_")));
 };
 
-export const getGenres = () => async (dispatch) => {
+export const getListOfGenres = () => async (dispatch) => {
   const response = await tmdb.get("/genre/movie/list", {
     params: {
       api_key: KEY,
@@ -31,14 +30,30 @@ export const getGenres = () => async (dispatch) => {
   dispatch({ type: TYPES.GET_GENRES, payload: response.data.genres });
 };
 
-export const getDiscover = (name, page = 1) => async (dispatch) => {
+export const getGenres = (id, sortBy = "popularity") => async (dispatch) => {
   dispatch({ type: TYPES.SET_MOVIES_LOADING });
-  const response = await tmdb.get(`/movie/${name.toLowerCase()}`, {
+  const response = await tmdb.get("/discover/movie", {
     params: {
       api_key: KEY,
-      page,
+      with_genres: id,
+      sort_by: sortBy + ".desc",
     },
   });
+  dispatch({ type: TYPES.FETCH_MOVIES_GENRES, payload: response.data });
+  dispatch({ type: TYPES.REMOVE_MOVIES_LOADING });
+};
+
+export const getDiscover = (name, page = 1) => async (dispatch) => {
+  dispatch({ type: TYPES.SET_MOVIES_LOADING });
+  const response = await tmdb.get(
+    `/movie/${name.toLowerCase().replace(/ /g, "_")}`,
+    {
+      params: {
+        api_key: KEY,
+        page,
+      },
+    }
+  );
   dispatch({ type: TYPES.FETCH_MOVIES_DISCOVER, payload: response.data });
   dispatch({ type: TYPES.REMOVE_MOVIES_LOADING });
 };
@@ -55,6 +70,7 @@ export const getConfig = () => async (dispatch) => {
 export const changePage = (name, page = 1) => async (dispatch) => {
   dispatch(push(`/discover/popular?page=${page}`));
   scroll.scrollToTop({ smooth: "easeOutQuint" });
+
   const response = await tmdb.get(`/movie/${name.toLowerCase()}`, {
     params: {
       api_key: KEY,

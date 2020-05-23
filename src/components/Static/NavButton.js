@@ -6,14 +6,10 @@ import { setSelected } from "../../actions";
 import { connect } from "react-redux";
 
 export class NavButton extends Component {
-  onGenresClick = () => {
-    this.props.setSelected(this.props.name);
-  };
-
   render() {
     return (
       <Button
-        onClick={this.onGenresClick}
+        onClick={() => this.props.onClick(this.props.name, this.props.id)}
         selected={
           this.props.name.toLowerCase().replace(/ /g, "_") ===
           this.props.selected

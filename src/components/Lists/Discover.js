@@ -32,7 +32,10 @@ export class Discover extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return { selected: state.config.selected, location: state.router.location };
+  return {
+    selected: state.config.selected,
+    location: state.router.location,
+  };
 };
 
 export default connect(mapStateToProps, { getDiscover })(Discover);

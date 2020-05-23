@@ -22,7 +22,11 @@ export default (state = { loading: true }, action) => {
         ...state,
         ...action.payload,
       };
-
+    case TYPES.FETCH_MOVIES_GENRES:
+      return {
+        ...state,
+        ...action.payload,
+      };
     default:
       return state;
   }
