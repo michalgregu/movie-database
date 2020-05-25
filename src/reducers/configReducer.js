@@ -1,6 +1,10 @@
 import * as TYPES from "../actions/types";
 
-const initialState = { loading: true, selected: "popular" };
+const initialState = {
+  loading: true,
+  selected: "popular",
+  sortBy: { value: "popularity", label: "Popularity" },
+};
 
 export default (state = initialState, action) => {
   switch (action.type) {
@@ -28,6 +32,11 @@ export default (state = initialState, action) => {
       return {
         ...state,
         selected: action.payload,
+      };
+    case TYPES.SET_SORTBY:
+      return {
+        ...state,
+        sortBy: action.payload,
       };
     default:
       return state;

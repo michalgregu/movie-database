@@ -10,7 +10,12 @@ export class MoviesList extends Component {
   renderList = () => {
     if (this.props.list) {
       return this.props.list.map((item) => (
-        <LazyLoad height={100} offset={-30} placeholder={<SpinnerSmall />}>
+        <LazyLoad
+          key={item.id}
+          height={100}
+          offset={-30}
+          placeholder={<SpinnerSmall />}
+        >
           <MovieItem details={item} key={item.id} />
         </LazyLoad>
       ));

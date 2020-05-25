@@ -1,6 +1,6 @@
 import * as TYPES from "./types";
 import tmdb from "../apis/tmdb";
-// import { push } from "connected-react-router";
+
 import { animateScroll as scroll } from "react-scroll";
 
 const KEY = "98f9ea95150a1fbb9c37be468dd850a9";
@@ -18,6 +18,13 @@ export const setSelected = (name) => async (dispatch) => {
   dispatch({
     type: TYPES.SET_SELECTED,
     payload: name.toLowerCase().replace(/ /g, "_"),
+  });
+};
+
+export const setSortBy = (sortBy) => async (dispatch) => {
+  await dispatch({
+    type: TYPES.SET_SORTBY,
+    payload: sortBy,
   });
 };
 

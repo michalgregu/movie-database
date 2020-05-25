@@ -10,17 +10,9 @@ import Header from "./Header";
 import Pagination from "./Pagination";
 import Spinner from "./Spinner";
 import MoviesList from "./MoviesList";
+import SortBy from "./SortBy";
 
 export class Genres extends Component {
-  // componentDidUpdate() {
-  //   window.onpopstate = () => {
-  //     this.props.getDiscover(
-  //       this.props.selected,
-  //       this.props.location.query.page
-  //     );
-  //   };
-  // }
-
   backClick = () => {
     const newPage = this.props.page - 1;
     const genreId = this.props.genres.find((item) =>
@@ -30,7 +22,7 @@ export class Genres extends Component {
       `/genres/${this.props.selected.toLowerCase()}?page=${newPage}`
     );
     scroll.scrollToTop({ smooth: "easeOutQuint" });
-    this.props.getGenres(genreId, newPage);
+    this.props.getGenres(genreId, newPage, this.props.sortBy);
   };
 
   nextClick = () => {
@@ -42,13 +34,14 @@ export class Genres extends Component {
       `/genres/${this.props.selected.toLowerCase()}?page=${newPage}`
     );
     scroll.scrollToTop({ smooth: "easeOutQuint" });
-    this.props.getGenres(genreId, newPage);
+    this.props.getGenres(genreId, newPage, this.props.sortBy);
   };
 
   render() {
     return (
       <Wrapper>
         <Header name={this.props.selected} />
+        <SortBy />
         <LazyLoad height={100} offset={-30} placeholder={<Spinner />}>
           <MoviesList />
         </LazyLoad>
@@ -64,10 +57,11 @@ export class Genres extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    selected: state.config.selected,
     location: state.router.location,
+    selected: state.config.selected,
     page: state.movies.page,
     genres: state.config.genres,
+    sortBy: state.config.sortBy.value,
   };
 };
 
