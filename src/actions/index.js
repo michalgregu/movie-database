@@ -21,11 +21,19 @@ export const setSelected = (name) => async (dispatch) => {
   });
 };
 
-export const setSortBy = (sortBy) => async (dispatch) => {
-  await dispatch({
+export const setSortBy = (sortBy) => (dispatch) => {
+  dispatch({
     type: TYPES.SET_SORTBY,
     payload: sortBy,
   });
+};
+
+export const setSearch = (search, page = 1) => async (dispatch) => {
+  dispatch({
+    type: TYPES.SET_SEARCH,
+    payload: search,
+  });
+  dispatch(getSearch(search));
 };
 
 export const getListOfGenres = () => async (dispatch) => {
@@ -35,6 +43,22 @@ export const getListOfGenres = () => async (dispatch) => {
     },
   });
   dispatch({ type: TYPES.GET_GENRES, payload: response.data.genres });
+};
+
+export const getSearch = (search, page = 1) => async (dispatch) => {
+  dispatch({ type: TYPES.SET_MOVIES_LOADING });
+  const response = await tmdb.get("/search/movie", {
+    params: {
+      api_key: KEY,
+      query: search,
+      page,
+    },
+  });
+  dispatch({
+    type: TYPES.FETCH_MOVIES_SEARCH,
+    payload: response.data,
+  });
+  dispatch({ type: TYPES.REMOVE_MOVIES_LOADING });
 };
 
 export const getGenres = (id, page = 1, sortBy = "popularity") => async (

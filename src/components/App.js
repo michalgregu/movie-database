@@ -12,6 +12,7 @@ import Navbar from "./Static/Navbar";
 import SearchBar from "./Static/SearchBar";
 import Discover from "./Lists/Discover";
 import Genres from "./Lists/Genres";
+import Search from "./Lists/Search";
 
 library.add(far, faStar);
 
@@ -32,6 +33,7 @@ class App extends Component {
 
         <Route path="/discover/:name" component={Discover}></Route>
         <Route path="/genres/:name" component={Genres}></Route>
+        <Route path="/search/:name" component={Search}></Route>
       </Router>
     );
   }

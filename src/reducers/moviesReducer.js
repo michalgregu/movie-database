@@ -27,6 +27,11 @@ export default (state = { loading: true }, action) => {
         ...state,
         ...action.payload,
       };
+    case TYPES.FETCH_MOVIES_SEARCH:
+      return {
+        ...state,
+        ...action.payload,
+      };
     default:
       return state;
   }

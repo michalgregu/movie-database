@@ -45,7 +45,6 @@ export class Genres extends Component {
         <LazyLoad height={100} offset={-30} placeholder={<Spinner />}>
           <MoviesList />
         </LazyLoad>
-
         <Pagination
           onClickPrevious={this.backClick}
           onClickNext={this.nextClick}

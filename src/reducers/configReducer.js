@@ -38,6 +38,11 @@ export default (state = initialState, action) => {
         ...state,
         sortBy: action.payload,
       };
+    case TYPES.SET_SEARCH:
+      return {
+        ...state,
+        search: action.payload,
+      };
     default:
       return state;
   }

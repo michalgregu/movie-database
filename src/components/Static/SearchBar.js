@@ -2,26 +2,41 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { push } from "connected-react-router";
+
+import { setSearch } from "../../actions";
+import { connect } from "react-redux";
 
 export class SearchBar extends Component {
+  state = { search: "" };
+
+  onSearchSubmit = async (e) => {
+    e.preventDefault();
+    await this.props.setSearch(this.state.search);
+    this.props.push(`/search/${this.state.search}`);
+    this.setState({ search: "" });
+  };
+
   render() {
     return (
-      <SearchBox>
+      <SearchBox onSubmit={this.onSearchSubmit}>
         <SearchInput
           type="text"
+          value={this.state.search}
+          onChange={(e) => this.setState({ search: e.target.value })}
           placeholder="Search for a movie..."
         ></SearchInput>
         <Button>
-          <StyledIcon icon={faSearch}></StyledIcon>
+          <FontAwesomeIcon icon={faSearch}></FontAwesomeIcon>
         </Button>
       </SearchBox>
     );
   }
 }
 
-export default SearchBar;
+export default connect(null, { push, setSearch })(SearchBar);
 
-const SearchBox = styled.div`
+const SearchBox = styled.form`
   position: absolute;
   right: 20px;
   top: 20px;
@@ -65,4 +80,3 @@ const Button = styled.button`
     color: #2f3640;
   }
 `;
-const StyledIcon = styled(FontAwesomeIcon)``;
