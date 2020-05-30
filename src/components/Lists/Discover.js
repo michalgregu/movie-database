@@ -14,6 +14,7 @@ const MoviesList = React.lazy(() => import("./MoviesList"));
 export class Discover extends Component {
   componentDidUpdate() {
     window.onpopstate = () => {
+      scroll.scrollToTop({ smooth: "easeOutQuint" });
       this.props.getDiscover(
         this.props.selected,
         this.props.location.query.page

@@ -13,6 +13,21 @@ import MoviesList from "./MoviesList";
 import SortBy from "./SortBy";
 
 export class Genres extends Component {
+  componentDidUpdate = () => {
+    const genreId = this.props.genres.find(
+      (item) => item.name.toLowerCase() === this.props.selected
+    ).id;
+
+    window.onpopstate = () => {
+      scroll.scrollToTop({ smooth: "easeOutQuint" });
+      this.props.getGenres(
+        genreId,
+        this.props.location.query.page,
+        this.props.sortBy
+      );
+    };
+  };
+
   backClick = () => {
     const newPage = this.props.page - 1;
     const genreId = this.props.genres.find((item) =>
@@ -42,7 +57,7 @@ export class Genres extends Component {
       <Wrapper>
         <Header name={this.props.selected} />
         <SortBy />
-        <LazyLoad height={100} offset={-30} placeholder={<Spinner />}>
+        <LazyLoad height={100} offset={-10} placeholder={<Spinner />}>
           <MoviesList />
         </LazyLoad>
         <Pagination

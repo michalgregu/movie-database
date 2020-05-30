@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { far } from "@fortawesome/free-regular-svg-icons";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
+import { push } from "connected-react-router";
 
 import history from "../history";
 import { initializeState } from "../actions";
@@ -20,6 +21,10 @@ library.add(far, faStar);
 class App extends Component {
   componentDidMount() {
     this.props.initializeState(this.props.selected);
+
+    window.onbeforeunload = () => {
+      this.props.push(`/discover/popular`);
+    };
   }
 
   render() {
@@ -47,4 +52,5 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps, {
   initializeState,
+  push,
 })(App);

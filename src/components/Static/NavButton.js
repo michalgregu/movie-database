@@ -44,6 +44,7 @@ const Button = styled.button`
   cursor: pointer;
   font-size: 1.1rem;
   font-weight: 800;
+  line-height: 2.2;
 
   border: ${(props) =>
     props.selected ? `1px solid ${props.theme.colors.main}` : "none"};
@@ -56,5 +57,7 @@ const Button = styled.button`
 `;
 
 const StyledIcon = styled(FontAwesomeIcon)`
+  margin-top: 6px;
+
   margin-right: 5px;
 `;

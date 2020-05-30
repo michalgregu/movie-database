@@ -1,6 +1,6 @@
 import * as TYPES from "./../actions/types";
 
-export default (state = {}, action) => {
+export default (state = null, action) => {
   switch (action.type) {
     case TYPES.FETCH_MOVIE_DETAILS:
       return {

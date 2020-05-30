@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 import Rating from "react-rating";
 import { goBack, push } from "connected-react-router";
 import ModalVideo from "react-modal-video";
@@ -41,6 +42,10 @@ export class Details extends Component {
   };
 
   render() {
+    if (this.props.movie === null) {
+      return <Redirect to="/discover/popular" />;
+    }
+
     const {
       genres,
       homepage,
@@ -54,6 +59,7 @@ export class Details extends Component {
       videos,
       spoken_languages,
       runtime,
+      recommendations,
     } = this.props.movie;
 
     const path = `http://image.tmdb.org/t/p/w500/${poster_path} `;
@@ -89,8 +95,8 @@ export class Details extends Component {
                 />
                 <Votes>{vote_average}</Votes>
                 <Language>
-                  {spoken_languages.length >= 1 ? spoken_languages[0].name : ""}{" "}
-                  | {runtime} min. | {release_date.substring(0, 4)}
+                  {spoken_languages[0].name} | {runtime} min. |{" "}
+                  {release_date.substring(0, 4)}
                 </Language>
               </RatingWrapper>
               <SmallHeader>The Genres</SmallHeader>
@@ -148,7 +154,7 @@ export class Details extends Component {
             </Info>
           </DetailsWrapper>
         </LazyLoad>
-        <Header name="Recommended" />
+        {recommendations.total_results > 0 && <Header name="Recommended" />}
         <MoviesList />
         <Pagination
           onClickPrevious={this.backClick}
@@ -211,6 +217,8 @@ const Info = styled.div`
 `;
 
 const InfoHeader = styled.h1`
+  max-width: 540px;
+
   margin-top: 0;
   margin-bottom: 0;
   text-transform: uppercase;

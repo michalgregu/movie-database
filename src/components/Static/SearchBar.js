@@ -77,6 +77,8 @@ const Button = styled.button`
   justify-content: center;
   align-items: center;
   transition: 0.4s;
+  outline: none;
+
   ${SearchBox}:hover & {
     background: white;
     color: #2f3640;
