@@ -23,8 +23,9 @@ const StyledButton = styled.button`
   display: flex;
   flex-direction: ${(props) => (props.iconLeft ? "row" : "row-reverse")};
   flex-wrap: nowrap;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
+  margin-right: 20px;
   padding: 0 2.2rem;
   height: 35px;
   min-width: 110px;
@@ -35,7 +36,7 @@ const StyledButton = styled.button`
   text-decoration: none;
   outline: none;
   line-height: 1;
-  transition: all 0.1s ease-in-out;
+  transition: all 0.2s ease-in-out;
   box-shadow: 0px 5px 15px 5px rgba(0, 0, 0, 0.12);
   background-color: ${(props) =>
     props.solid ? props.theme.colors.main : "transparent"};

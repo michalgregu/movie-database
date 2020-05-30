@@ -12,9 +12,11 @@ export class SearchBar extends Component {
 
   onSearchSubmit = async (e) => {
     e.preventDefault();
-    await this.props.setSearch(this.state.search);
-    this.props.push(`/search/${this.state.search}`);
-    this.setState({ search: "" });
+    if (this.state.search !== "") {
+      await this.props.setSearch(this.state.search);
+      this.props.push(`/search/${this.state.search}`);
+      this.setState({ search: "" });
+    }
   };
 
   render() {

@@ -14,7 +14,7 @@ export class MovieItem extends Component {
     const path = `${this.props.baseUrl}w342/${poster_path} `;
 
     return (
-      <Wrapper>
+      <Wrapper onClick={this.props.onClick}>
         <ImgWrapper>
           <Img src={poster_path !== null ? path : poster} />
         </ImgWrapper>

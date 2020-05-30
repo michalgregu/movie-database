@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { ThemeProvider } from "styled-components";
 import { ConnectedRouter } from "connected-react-router";
+import "../node_modules/react-modal-video/scss/modal-video.scss";
 
 import GlobalStyle from "../src/utils/globals";
 import theme from "../src/utils/theme";

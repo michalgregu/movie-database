@@ -32,6 +32,11 @@ export default (state = { loading: true }, action) => {
         ...state,
         ...action.payload,
       };
+    case TYPES.FETCH_MOVIE_RECOMMENDATION:
+      return {
+        ...state,
+        ...action.payload,
+      };
     default:
       return state;
   }

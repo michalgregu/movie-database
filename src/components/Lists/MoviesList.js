@@ -2,11 +2,20 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
 import LazyLoad from "react-lazyload";
+import { push } from "connected-react-router";
+import { animateScroll as scroll } from "react-scroll";
 
+import { getMovie } from "../../actions";
 import SpinnerSmall from "./SpinnerSmall";
 import MovieItem from "./MovieItem";
 
 export class MoviesList extends Component {
+  onClick = async (id) => {
+    scroll.scrollToTop({ smooth: "easeOutQuint" });
+    await this.props.getMovie(id);
+    this.props.push(`/details/${id}`);
+  };
+
   renderList = () => {
     if (this.props.list) {
       return this.props.list.map((item) => (
@@ -16,7 +25,11 @@ export class MoviesList extends Component {
           offset={-30}
           placeholder={<SpinnerSmall />}
         >
-          <MovieItem details={item} key={item.id} />
+          <MovieItem
+            onClick={() => this.onClick(item.id)}
+            details={item}
+            key={item.id}
+          />
         </LazyLoad>
       ));
     }
@@ -31,7 +44,7 @@ const mapStateToProps = (state) => {
   return { list: state.movies.results };
 };
 
-export default connect(mapStateToProps)(MoviesList);
+export default connect(mapStateToProps, { push, getMovie })(MoviesList);
 
 const Wrapper = styled.div`
   margin-left: 240px;

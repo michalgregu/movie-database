@@ -13,6 +13,15 @@ export const initializeState = (name) => async (dispatch) => {
   dispatch({ type: TYPES.REMOVE_LOADING });
 };
 
+export const getConfig = () => async (dispatch) => {
+  const response = await tmdb.get("/configuration", {
+    params: {
+      api_key: KEY,
+    },
+  });
+  dispatch({ type: TYPES.GET_CONFIG, payload: response.data });
+};
+
 export const setSelected = (name) => async (dispatch) => {
   scroll.scrollToTop({ smooth: "easeOutQuint" });
   dispatch({
@@ -92,11 +101,28 @@ export const getDiscover = (name, page = 1) => async (dispatch) => {
   dispatch({ type: TYPES.REMOVE_MOVIES_LOADING });
 };
 
-export const getConfig = () => async (dispatch) => {
-  const response = await tmdb.get("/configuration", {
+export const getMovie = (id) => async (dispatch) => {
+  dispatch({ type: TYPES.SET_MOVIES_LOADING });
+  const response = await tmdb.get(`/movie/${id}`, {
     params: {
       api_key: KEY,
+      append_to_response: "videos,recommendations",
     },
   });
-  dispatch({ type: TYPES.GET_CONFIG, payload: response.data });
+  dispatch({ type: TYPES.FETCH_MOVIE_DETAILS, payload: response.data });
+  dispatch({
+    type: TYPES.FETCH_MOVIES_DISCOVER,
+    payload: response.data.recommendations,
+  });
+  dispatch({ type: TYPES.REMOVE_MOVIES_LOADING });
+};
+
+export const getRecommendation = (id, page) => async (dispatch) => {
+  const response = await tmdb.get(`/movie/${id}/recommendations`, {
+    params: {
+      api_key: KEY,
+      page,
+    },
+  });
+  dispatch({ type: TYPES.FETCH_MOVIE_RECOMMENDATION, payload: response.data });
 };
