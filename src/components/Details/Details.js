@@ -200,6 +200,7 @@ const ImageWrapper = styled.div`
   height: 560px;
   flex: 1;
   overflow: hidden;
+  padding-right: 20px;
 `;
 
 const Img = styled.img`
@@ -207,6 +208,12 @@ const Img = styled.img`
   max-height: 100%;
   object-fit: cover;
   border-radius: 8px;
+  @media ${(props) => props.theme.mediaQueries.large} {
+    max-height: 70%;
+    align-self: start;
+    justify-self: end;
+    float: right;
+  }
 `;
 
 const Info = styled.div`
@@ -214,23 +221,35 @@ const Info = styled.div`
   flex: 2;
   padding: 0 auto 20px 10px;
   color: ${(props) => props.theme.colors.main};
+
+  @media ${(props) => props.theme.mediaQueries.large} {
+    max-width: 500px;
+  }
 `;
 
 const InfoHeader = styled.h1`
   max-width: 540px;
-
   margin-top: 0;
   margin-bottom: 0;
   text-transform: uppercase;
   font-size: 3.8rem;
   font-weight: 300;
   letter-spacing: -2px;
+
+  @media ${(props) => props.theme.mediaQueries.large} {
+    font-size: 2.4rem;
+    max-width: 380px;
+  }
 `;
 const Tagline = styled.h3`
   margin-top: 5px;
   margin-bottom: 5px;
   text-transform: uppercase;
   font-size: 1.6rem;
+
+  @media ${(props) => props.theme.mediaQueries.large} {
+    font-size: 1.2rem;
+  }
 `;
 
 const RatingWrapper = styled.div`
@@ -239,6 +258,10 @@ const RatingWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   max-width: 540px;
+
+  @media ${(props) => props.theme.mediaQueries.large} {
+    max-width: 380px;
+  }
 `;
 
 const StyledRating = styled(Rating)``;
@@ -246,10 +269,18 @@ const StyledRating = styled(Rating)``;
 const Star = styled(StarIcon)`
   font-size: 2rem;
   color: ${(props) => props.theme.colors.main};
+
+  @media ${(props) => props.theme.mediaQueries.large} {
+    font-size: 1rem;
+  }
 `;
 const StarBorder = styled(StarBorderIcon)`
   font-size: 2rem;
   color: ${(props) => props.theme.colors.main};
+
+  @media ${(props) => props.theme.mediaQueries.large} {
+    font-size: 1rem;
+  }
 `;
 
 const Votes = styled.small`
@@ -257,6 +288,10 @@ const Votes = styled.small`
   font-weight: bold;
   margin-right: auto;
   margin-left: 1rem;
+
+  @media ${(props) => props.theme.mediaQueries.large} {
+    font-size: 1rem;
+  }
 `;
 
 const Language = styled.p`
@@ -264,6 +299,10 @@ const Language = styled.p`
   font-weight: bold;
   text-transform: uppercase;
   color: ${(props) => props.theme.colors.lightgray};
+
+  @media ${(props) => props.theme.mediaQueries.large} {
+    font-size: 0.8rem;
+  }
 `;
 
 const SmallHeader = styled.p`
@@ -271,6 +310,10 @@ const SmallHeader = styled.p`
   text-transform: uppercase;
   font-size: 1.3rem;
   font-weight: 700;
+
+  @media ${(props) => props.theme.mediaQueries.large} {
+    font-size: 1rem;
+  }
 `;
 
 const Synopsis = styled.p`
@@ -278,6 +321,11 @@ const Synopsis = styled.p`
   font-size: 1.3rem;
   line-height: 2;
   font-weight: 500;
+
+  @media ${(props) => props.theme.mediaQueries.large} {
+    font-size: 1rem;
+    max-width: 380px;
+  }
 `;
 
 const ButtonsWrapper = styled.div`
@@ -285,4 +333,8 @@ const ButtonsWrapper = styled.div`
   display: flex;
   align-items: flex-start;
   max-width: 540px;
+  @media ${(props) => props.theme.mediaQueries.large} {
+    font-size: 1rem;
+    max-width: 380px;
+  }
 `;

@@ -14,9 +14,14 @@ import SortBy from "./SortBy";
 
 export class Genres extends Component {
   componentDidUpdate = () => {
-    const genreId = this.props.genres.find(
-      (item) => item.name.toLowerCase() === this.props.selected
-    ).id;
+    let genreId = null;
+    try {
+      genreId = this.props.genres.find(
+        (item) => item.name.toLowerCase() === this.props.selected
+      ).id;
+    } catch {
+      return false;
+    }
 
     window.onpopstate = () => {
       scroll.scrollToTop({ smooth: "easeOutQuint" });

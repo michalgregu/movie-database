@@ -45,7 +45,7 @@ export default connect(mapStateToProps)(Pagination);
 
 const Wrapper = styled.div`
   margin-right: 80px;
-  margin-left: 250px;
+  margin-left: 300px;
   margin-bottom: 60px;
   display: flex;
   justify-content: ${(props) => {
@@ -57,4 +57,12 @@ const Wrapper = styled.div`
       return "space-between";
     }
   }};
+  @media ${(props) => props.theme.mediaQueries.medium} {
+    margin-top: 50px;
+    margin-left: 80px;
+  }
+  @media ${(props) => props.theme.mediaQueries.smaller} {
+    margin-left: 15px;
+    margin-right: 15px;
+  }
 `;

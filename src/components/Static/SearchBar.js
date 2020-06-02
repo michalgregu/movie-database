@@ -40,8 +40,8 @@ export default connect(null, { push, setSearch })(SearchBar);
 
 const SearchBox = styled.form`
   position: absolute;
-  right: 20px;
-  top: 20px;
+  right: 40px;
+  top: 10px;
   background: ${(props) => props.theme.colors.main};
   height: 30px;
   border-radius: 40px;
@@ -61,6 +61,9 @@ const SearchInput = styled.input`
   ${SearchBox}:hover & {
     width: 240px;
     padding: 0 6px;
+    @media ${(props) => props.theme.mediaQueries.smaller} {
+      width: 180px;
+    }
   }
   ::placeholder {
     color: #fff;

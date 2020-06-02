@@ -69,4 +69,9 @@ const Wrapper = styled.div`
   margin-top: 20px;
   margin-left: 300px;
   margin-right: 60px;
+
+  @media ${(props) => props.theme.mediaQueries.medium} {
+    margin-left: 60px;
+    margin-bottom: 30px;
+  }
 `;

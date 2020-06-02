@@ -56,4 +56,12 @@ const Wrapper = styled.div`
   padding: 50px;
   align-content: space-between;
   justify-content: space-evenly;
+
+  @media ${(props) => props.theme.mediaQueries.medium} {
+    margin-left: 15px;
+    grid-template-columns: repeat(auto-fit, minmax(4rem, 16rem));
+    margin-left: 5px;
+    margin-right: 5px;
+    padding: 5px;
+  }
 `;
