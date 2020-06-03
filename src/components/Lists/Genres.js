@@ -14,6 +14,7 @@ import SortBy from "./SortBy";
 
 export class Genres extends Component {
   componentDidUpdate = () => {
+    // Identify selected genre's Id
     let genreId = null;
     try {
       genreId = this.props.genres.find(
@@ -24,6 +25,7 @@ export class Genres extends Component {
     }
 
     window.onpopstate = () => {
+      // When user uses back button in a browser rerender a movies list
       scroll.scrollToTop({ smooth: "easeOutQuint" });
       this.props.getGenres(
         genreId,
@@ -34,6 +36,7 @@ export class Genres extends Component {
   };
 
   backClick = () => {
+    // Move a user to a new page location, identify clicked genre's Id and rerender new page of movies list
     const newPage = this.props.page - 1;
     const genreId = this.props.genres.find((item) =>
       item.name.toLowerCase().includes(this.props.selected)
@@ -46,6 +49,7 @@ export class Genres extends Component {
   };
 
   nextClick = () => {
+    // Move a user to a new page location, identify clicked genre's Id and rerender new page of movies list
     const newPage = this.props.page + 1;
     const genreId = this.props.genres.find((item) =>
       item.name.toLowerCase().includes(this.props.selected)

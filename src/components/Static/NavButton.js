@@ -10,6 +10,7 @@ export class NavButton extends Component {
     return (
       <Button
         onClick={() => this.props.onClick(this.props.name, this.props.id)}
+        // If state/selected matches name of the button, change styling
         selected={
           this.props.name.toLowerCase().replace(/ /g, "_") ===
           this.props.selected
@@ -52,7 +53,10 @@ const Button = styled.button`
     props.selected ? props.theme.colors.main : props.theme.colors.lightgray};
 
   &:hover {
-    border: 1px solid ${(props) => props.theme.colors.lightgray};
+    border: ${(props) =>
+      props.selected
+        ? `1px solid ${props.theme.colors.main}`
+        : `1px solid ${props.theme.colors.lightgray}`};
   }
 `;
 

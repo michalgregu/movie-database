@@ -13,6 +13,7 @@ const MoviesList = React.lazy(() => import("./MoviesList"));
 
 export class Discover extends Component {
   componentDidUpdate() {
+    // On browsers back button click, rerender a movies list
     window.onpopstate = () => {
       scroll.scrollToTop({ smooth: "easeOutQuint" });
       this.props.getDiscover(
@@ -23,6 +24,7 @@ export class Discover extends Component {
   }
 
   backClick = () => {
+    // Move a user to a new page location and rerender new page of movies list
     const newPage = this.props.page - 1;
     this.props.push(`/discover/popular?page=${newPage}`);
     scroll.scrollToTop({ smooth: "easeOutQuint" });
@@ -30,6 +32,7 @@ export class Discover extends Component {
   };
 
   nextClick = () => {
+    // Move a user to a new page location and rerender new page of movies list
     const newPage = this.props.page + 1;
     this.props.push(`/discover/popular?page=${newPage}`);
     scroll.scrollToTop({ smooth: "easeOutQuint" });

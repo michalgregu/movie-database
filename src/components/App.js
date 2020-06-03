@@ -11,7 +11,6 @@ import styled from "styled-components";
 
 import history from "../history";
 import { initializeState } from "../actions";
-
 import Navbar from "./Static/Navbar";
 import SearchBar from "./Static/SearchBar";
 import Discover from "./Lists/Discover";
@@ -25,8 +24,10 @@ library.add(far, faStar);
 
 class App extends Component {
   componentDidMount() {
+    // Initialize state with default selected value
     this.props.initializeState(this.props.selected);
 
+    // On refresh page, direct to /popular
     window.onbeforeunload = () => {
       this.props.push(`/discover/popular`);
     };
@@ -35,6 +36,7 @@ class App extends Component {
   render() {
     return (
       <Router history={history}>
+        {/* Under 900px render a fold-out sidebar */}
         <Media
           query="(max-width:900px)"
           render={() => (
@@ -45,6 +47,7 @@ class App extends Component {
           )}
         />
         <Media query="(max-width:900px)" render={() => <NavBarMobile />} />
+        {/* Over 900px render a normal sidebar */}
         <Media query="(min-width: 900px)" render={() => <Navbar />} />
         <Media query="(min-width: 900px)" render={() => <SearchBar />} />
 

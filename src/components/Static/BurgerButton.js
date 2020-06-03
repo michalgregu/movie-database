@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
+
 import { setMobileOn, setMobileOff } from "../../actions";
 
 export class BurgerButton extends Component {
+  // When burger button is clicked, toggle isMobileOpen state
   onClick = () => {
     if (this.props.isMobileOpen) {
       this.props.setMobileOff();

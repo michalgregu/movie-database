@@ -7,8 +7,8 @@ import {
   faChartBar,
   faHeart,
 } from "@fortawesome/free-solid-svg-icons";
-import { getDiscover, setSelected } from "../../actions";
 
+import { getDiscover, setSelected } from "../../actions";
 import NavButton from "./NavButton";
 
 export class Discover extends Component {

@@ -8,13 +8,13 @@ import { setSortBy, getGenres } from "../../actions";
 
 export class SortBy extends Component {
   onSortByChange = async (sortBy) => {
+    // Identify selected genre's Id and rerender movies list according to selected SortBy 
     const genreId = this.props.genres.find((item) =>
       item.name.toLowerCase().includes(this.props.selected)
     ).id;
 
     await this.props.setSortBy(sortBy);
     this.props.getGenres(genreId, 1, sortBy.value);
-
     this.props.push(process.env.PUBLIC_URL + `/genres/${this.props.selected}`);
   };
 

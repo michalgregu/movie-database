@@ -28,6 +28,7 @@ export class Details extends Component {
   state = { isModalOpen: false };
 
   backClick = () => {
+    // Move a user to a new page location and rerender new page of movies list
     const newPage = this.props.page - 1;
     this.props.push(`${this.props.location}?page=${newPage}`);
     scroll.scrollTo(720, { smooth: "easeOutQuint" });
@@ -35,6 +36,7 @@ export class Details extends Component {
   };
 
   nextClick = () => {
+     // Move a user to a new page location and rerender new page of movies list
     const newPage = this.props.page + 1;
     this.props.push(`${this.props.location}?page=${newPage}`);
     scroll.scrollTo(720, { smooth: "easeOutQuint" });
@@ -64,6 +66,7 @@ export class Details extends Component {
 
     const path = `http://image.tmdb.org/t/p/w500/${poster_path} `;
 
+    // If there are trailers included in the movie details, find a youtube id of the trailer
     let trailerId = "";
     if (videos) {
       let trailer = videos.results.find(
