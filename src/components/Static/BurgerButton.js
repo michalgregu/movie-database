@@ -1,12 +1,22 @@
 import React, { Component } from "react";
 import styled from "styled-components";
+import { connect } from "react-redux";
+import { setMobileOn, setMobileOff } from "../../actions";
 
 export class BurgerButton extends Component {
+  onClick = () => {
+    if (this.props.isMobileOpen) {
+      this.props.setMobileOff();
+    } else {
+      this.props.setMobileOn();
+    }
+  };
+
   render() {
     return (
       <StyledBurger
         isMobileOpen={this.props.isMobileOpen}
-        onClick={this.props.onClick}
+        onClick={this.onClick}
       >
         <div />
         <div />
@@ -16,7 +26,13 @@ export class BurgerButton extends Component {
   }
 }
 
-export default BurgerButton;
+const mapStateToProps = (state) => {
+  return { isMobileOpen: state.config.isMobileOpen };
+};
+
+export default connect(mapStateToProps, { setMobileOff, setMobileOn })(
+  BurgerButton
+);
 
 const StyledBurger = styled.button`
   position: absolute;

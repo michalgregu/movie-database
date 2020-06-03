@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 import Discover from "./DiscoverTags";
 import Genres from "./GenresTags";
+import { connect } from "react-redux";
 
 export class NavBarMobile extends Component {
   render() {
@@ -15,7 +16,11 @@ export class NavBarMobile extends Component {
   }
 }
 
-export default NavBarMobile;
+const mapStateToProps = (state) => {
+  return { isMobileOpen: state.config.isMobileOpen };
+};
+
+export default connect(mapStateToProps)(NavBarMobile);
 
 const Nav = styled.div`
   padding-top: 30px;
@@ -39,5 +44,5 @@ const Nav = styled.div`
   transform: ${(props) =>
     props.isMobileOpen ? "default" : "translateX(-100%)"};
   box-shadow: ${(props) =>
-    props.isMobileOpen ? "5px 5px 15px 5px rgba(0, 0, 0, 0.15)" : "none"};
+    props.isMobileOpen ? "5px 0 15px -2px rgba(0, 0, 0, 0.15)" : "none"};
 `;

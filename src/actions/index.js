@@ -28,6 +28,7 @@ export const setSelected = (name) => async (dispatch) => {
     type: TYPES.SET_SELECTED,
     payload: name.toLowerCase().replace(/ /g, "_"),
   });
+  dispatch(setMobileOff());
 };
 
 export const setSortBy = (sortBy) => (dispatch) => {
@@ -43,6 +44,7 @@ export const setSearch = (search, page = 1) => async (dispatch) => {
     payload: search,
   });
   dispatch(getSearch(search));
+  dispatch(setMobileOff());
 };
 
 export const getListOfGenres = () => async (dispatch) => {
