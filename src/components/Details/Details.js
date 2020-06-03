@@ -15,8 +15,8 @@ import PlayArrowIcon from "@material-ui/icons/PlayArrow";
 import LinkIcon from "@material-ui/icons/Link";
 import MovieIcon from "@material-ui/icons/Movie";
 import poster from "../../svg/300x442.png";
-import { getRecommendation } from "../../actions";
 
+import { getRecommendation } from "../../actions";
 import ButtonGenres from "./ButtonGenres";
 import Button from "../Lists/Button";
 import MoviesList from "../Lists/MoviesList";
@@ -36,7 +36,7 @@ export class Details extends Component {
   };
 
   nextClick = () => {
-     // Move a user to a new page location and rerender new page of movies list
+    // Move a user to a new page location and rerender new page of movies list
     const newPage = this.props.page + 1;
     this.props.push(`${this.props.location}?page=${newPage}`);
     scroll.scrollTo(720, { smooth: "easeOutQuint" });

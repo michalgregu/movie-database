@@ -3,6 +3,10 @@ import * as TYPES from "../actions/types";
 export default (state = { loading: true }, action) => {
   switch (action.type) {
     case TYPES.FETCH_MOVIES_DISCOVER:
+    case TYPES.CHANGE_PAGE:
+    case TYPES.FETCH_MOVIES_GENRES:
+    case TYPES.FETCH_MOVIES_SEARCH:
+    case TYPES.FETCH_MOVIE_RECOMMENDATION:
       return {
         ...state,
         ...action.payload,
@@ -16,26 +20,6 @@ export default (state = { loading: true }, action) => {
       return {
         ...state,
         loading: false,
-      };
-    case TYPES.CHANGE_PAGE:
-      return {
-        ...state,
-        ...action.payload,
-      };
-    case TYPES.FETCH_MOVIES_GENRES:
-      return {
-        ...state,
-        ...action.payload,
-      };
-    case TYPES.FETCH_MOVIES_SEARCH:
-      return {
-        ...state,
-        ...action.payload,
-      };
-    case TYPES.FETCH_MOVIE_RECOMMENDATION:
-      return {
-        ...state,
-        ...action.payload,
       };
     default:
       return state;
