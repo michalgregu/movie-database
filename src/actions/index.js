@@ -56,6 +56,7 @@ export const getListOfGenres = () => async (dispatch) => {
 
 export const getSearch = (search, page = 1) => async (dispatch) => {
   dispatch({ type: TYPES.SET_MOVIES_LOADING });
+  scroll.scrollToTop({ smooth: "easeOutQuint" });
   const response = await tmdb.get("/search/movie", {
     params: {
       api_key: KEY,
@@ -126,3 +127,6 @@ export const getRecommendation = (id, page) => async (dispatch) => {
   });
   dispatch({ type: TYPES.FETCH_MOVIE_RECOMMENDATION, payload: response.data });
 };
+
+export const setMobileOn = () => ({ type: TYPES.SET_MOBILE_ON });
+export const setMobileOff = () => ({ type: TYPES.SET_MOBILE_OFF });

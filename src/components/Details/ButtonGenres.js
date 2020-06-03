@@ -48,6 +48,9 @@ const StyledButton = styled.button`
   &:hover {
     transform: translateY(-3px);
   }
+  @media ${(props) => props.theme.mediaQueries.smaller} {
+    font-size: 0.8rem;
+  }
 `;
 
 const StyledIcon = styled(FontAwesomeIcon)`

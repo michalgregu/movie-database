@@ -12,6 +12,12 @@ import Spinner from "./Spinner";
 import MoviesList from "./MoviesList";
 
 export class Search extends Component {
+  componentDidUpdate() {
+    window.onpopstate = () => {
+      this.props.getSearch(this.props.search, this.props.location.query.page);
+    };
+  }
+
   backClick = () => {
     const newPage = this.props.page - 1;
     this.props.push(`/search/${this.props.search}?page=${newPage}`);
@@ -45,6 +51,8 @@ const mapStateToProps = (state) => {
   return {
     selected: state.config.selected,
     page: state.movies.page,
+    search: state.config.search,
+    location: state.router.location,
     search: state.config.search,
   };
 };

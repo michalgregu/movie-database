@@ -59,9 +59,14 @@ const Wrapper = styled.div`
 
   @media ${(props) => props.theme.mediaQueries.medium} {
     margin-left: 15px;
-    grid-template-columns: repeat(auto-fit, minmax(4rem, 16rem));
+    grid-template-columns: repeat(auto-fit, minmax(5rem, 16rem));
+    grid-template-rows: repeat(auto-fit, minmax(30rem, auto));
     margin-left: 5px;
     margin-right: 5px;
     padding: 5px;
+  }
+  @media ${(props) => props.theme.mediaQueries.smaller} {
+    grid-template-columns: repeat(auto-fit, minmax(3rem, 12rem));
+    grid-template-rows: repeat(auto-fit, minmax(25rem, auto));
   }
 `;

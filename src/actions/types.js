@@ -5,6 +5,8 @@ export const GET_CONFIG = "GET_CONFIG";
 export const SET_SELECTED = "SET_SELECTED";
 export const SET_SORTBY = "SET_SORTBY";
 export const SET_SEARCH = "SET_SEARCH";
+export const SET_MOBILE_ON = "SET_MOBILE_ON";
+export const SET_MOBILE_OFF = "SET_MOBILE_OFF";
 
 export const FETCH_MOVIES_GENRES = "FETCH_MOVIES_GENRES";
 export const FETCH_MOVIES_DISCOVER = "FETCH_MOVIES_DISCOVER";

@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import { connect } from "react-redux";
 
-import { getDiscover, setSelected } from "../../actions";
 import Discover from "./DiscoverTags";
 import Genres from "./GenresTags";
 
@@ -17,7 +15,7 @@ export class NavBarMobile extends Component {
   }
 }
 
-export default connect(null, { getDiscover, setSelected })(NavBarMobile);
+export default NavBarMobile;
 
 const Nav = styled.div`
   padding-top: 30px;

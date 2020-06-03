@@ -6,13 +6,13 @@ const theme = {
     yellow: "#FFA700",
   },
   size: {
-    smallest: "25em", //275px
-    smaller: "31.25em", //500px
-    small: "37.5em", //600px
-    medium: "56.25em", //900px
-    large: "70em", //1120px
-    larger: "80em", //1280px
-    largest: "97em", //1500px
+    smallest: "25em",
+    smaller: "31.25em",
+    small: "37.5em",
+    medium: "56.25em",
+    large: "70em",
+    larger: "80em",
+    largest: "97em",
   },
   mediaQueries: {
     smallest: `only screen and (max-width: 25em)`,

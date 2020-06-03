@@ -4,6 +4,7 @@ const initialState = {
   loading: true,
   selected: "popular",
   sortBy: { value: "popularity", label: "Popularity" },
+  isMobileOpen: false,
 };
 
 export default (state = initialState, action) => {
@@ -42,6 +43,16 @@ export default (state = initialState, action) => {
       return {
         ...state,
         search: action.payload,
+      };
+    case TYPES.SET_MOBILE_ON:
+      return {
+        ...state,
+        isMobileOpen: true,
+      };
+    case TYPES.SET_MOBILE_OFF:
+      return {
+        ...state,
+        isMobileOpen: false,
       };
     default:
       return state;

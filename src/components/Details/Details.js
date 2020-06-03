@@ -116,6 +116,7 @@ export class Details extends Component {
               <ButtonsWrapper>
                 {homepage && (
                   <Button
+                    shrinkable
                     name="Website"
                     onClick={() => window.open(homepage)}
                     icon={<LinkIcon />}
@@ -123,6 +124,7 @@ export class Details extends Component {
                 )}
                 {imdb_id && (
                   <Button
+                    shrinkable
                     name="IMDB"
                     onClick={() =>
                       window.open(`https://www.imdb.com/title/${imdb_id}`)
@@ -132,12 +134,14 @@ export class Details extends Component {
                 )}
                 {trailerId !== "" && (
                   <Button
+                    shrinkable
                     name="Trailer"
                     onClick={() => this.setState({ isModalOpen: true })}
                     icon={<PlayArrowIcon />}
                   />
                 )}
                 <Button
+                  shrinkable
                   onClick={this.props.goBack}
                   iconLeft
                   solid
@@ -192,7 +196,18 @@ const DetailsWrapper = styled.div`
   margin-bottom: 80px;
   min-height: 560px;
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
+
+  @media ${(props) => props.theme.mediaQueries.large} {
+    min-height: 360px;
+    margin-bottom: 0;
+  }
+  @media ${(props) => props.theme.mediaQueries.medium} {
+    flex-direction: column;
+    margin: 0;
+    padding-left: 20px;
+    align-items: center;
+  }
 `;
 const ImageWrapper = styled.div`
   margin-left: auto;
@@ -201,6 +216,14 @@ const ImageWrapper = styled.div`
   flex: 1;
   overflow: hidden;
   padding-right: 20px;
+  @media ${(props) => props.theme.mediaQueries.large} {
+    max-height: 400px;
+  }
+  @media ${(props) => props.theme.mediaQueries.medium} {
+    margin: 10px auto;
+    display: block;
+    margin-bottom: 30px;
+  }
 `;
 
 const Img = styled.img`
@@ -209,10 +232,9 @@ const Img = styled.img`
   object-fit: cover;
   border-radius: 8px;
   @media ${(props) => props.theme.mediaQueries.large} {
-    max-height: 70%;
-    align-self: start;
-    justify-self: end;
     float: right;
+  }
+  @media ${(props) => props.theme.mediaQueries.medium} {
   }
 `;
 
@@ -223,7 +245,8 @@ const Info = styled.div`
   color: ${(props) => props.theme.colors.main};
 
   @media ${(props) => props.theme.mediaQueries.large} {
-    max-width: 500px;
+    max-width: 100%;
+    margin-bottom: 30px;
   }
 `;
 
@@ -239,6 +262,10 @@ const InfoHeader = styled.h1`
   @media ${(props) => props.theme.mediaQueries.large} {
     font-size: 2.4rem;
     max-width: 380px;
+  }
+  @media ${(props) => props.theme.mediaQueries.medium} {
+    font-size: 2.4rem;
+    max-width: 540px;
   }
 `;
 const Tagline = styled.h3`
@@ -261,6 +288,9 @@ const RatingWrapper = styled.div`
 
   @media ${(props) => props.theme.mediaQueries.large} {
     max-width: 380px;
+  }
+  @media ${(props) => props.theme.mediaQueries.medium} {
+    max-width: 540px;
   }
 `;
 
@@ -303,6 +333,9 @@ const Language = styled.p`
   @media ${(props) => props.theme.mediaQueries.large} {
     font-size: 0.8rem;
   }
+  @media ${(props) => props.theme.mediaQueries.medium} {
+    max-width: 540px;
+  }
 `;
 
 const SmallHeader = styled.p`
@@ -323,8 +356,11 @@ const Synopsis = styled.p`
   font-weight: 500;
 
   @media ${(props) => props.theme.mediaQueries.large} {
-    font-size: 1rem;
+    font-size: 1.1rem;
     max-width: 380px;
+  }
+  @media ${(props) => props.theme.mediaQueries.medium} {
+    max-width: 540px;
   }
 `;
 
@@ -336,5 +372,10 @@ const ButtonsWrapper = styled.div`
   @media ${(props) => props.theme.mediaQueries.large} {
     font-size: 1rem;
     max-width: 380px;
+  }
+  @media ${(props) => props.theme.mediaQueries.medium} {
+    max-width: none;
+    width: 100%;
+    align-items: space-between;
   }
 `;

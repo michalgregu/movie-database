@@ -64,6 +64,9 @@ const SearchInput = styled.input`
     @media ${(props) => props.theme.mediaQueries.smaller} {
       width: 180px;
     }
+    @media ${(props) => props.theme.mediaQueries.smallest} {
+      width: 150px;
+    }
   }
   ::placeholder {
     color: #fff;

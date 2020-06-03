@@ -6,6 +6,7 @@ export class Button extends Component {
     const { icon, name, solid, iconLeft } = this.props;
     return (
       <StyledButton
+        shrinkable={this.props.shrinkable}
         onClick={this.props.onClick}
         iconLeft={iconLeft}
         solid={solid}
@@ -52,5 +53,18 @@ const StyledButton = styled.button`
     border: ${(props) =>
       props.solid ? `1px solid ${props.theme.colors.main}` : "none"};
     color: ${(props) => (props.solid ? props.theme.colors.main : "#fff")};
+  }
+
+  @media ${(props) => props.theme.mediaQueries.large} {
+    min-width: ${(props) => (props.shrinkable ? "80px" : "default")};
+    margin-right: 10px;
+  }
+  @media ${(props) => props.theme.mediaQueries.medium} {
+    font-size: ${(props) => (props.shrinkable ? "1.2rem" : "default")};
+    min-width: ${(props) => (props.shrinkable ? "60px" : "default")};
+    margin-right: 8px;
+    &:last-child {
+      margin-left: auto;
+    }
   }
 `;
