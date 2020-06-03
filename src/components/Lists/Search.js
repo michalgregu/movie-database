@@ -20,7 +20,7 @@ export class Search extends Component {
   }
 
   backClick = () => {
-     // Move a user to a new page location and rerender new page of movies list
+    // Move a user to a new page location and rerender new page of movies list
     const newPage = this.props.page - 1;
     this.props.push(`/search/${this.props.search}?page=${newPage}`);
     scroll.scrollToTop({ smooth: "easeOutQuint" });
@@ -28,13 +28,13 @@ export class Search extends Component {
   };
 
   nextClick = () => {
-     // Move a user to a new page location and rerender new page of movies list
+    // Move a user to a new page location and rerender new page of movies list
     const newPage = this.props.page + 1;
     this.props.push(`/search/${this.props.search}?page=${newPage}`);
     scroll.scrollToTop({ smooth: "easeOutQuint" });
     this.props.getSearch(this.props.search, newPage);
   };
-  
+
   render() {
     return (
       <Wrapper>
@@ -57,7 +57,6 @@ const mapStateToProps = (state) => {
     page: state.movies.page,
     search: state.config.search,
     location: state.router.location,
-    search: state.config.search,
   };
 };
 
