@@ -79,7 +79,7 @@ export class Details extends Component {
 
 		return (
 			<Wrapper>
-				<LazyLoad height={100} offset={20} placeholder={<Spinner />}>
+				<LazyLoad height={100} offset={100} placeholder={<Spinner />}>
 					<DetailsWrapper>
 						<ImageWrapper>
 							<Img src={poster_path !== null ? path : poster} />

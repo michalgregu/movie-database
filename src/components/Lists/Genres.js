@@ -66,7 +66,7 @@ export class Genres extends Component {
       <Wrapper>
         <Header name={this.props.selected} />
         <SortBy />
-        <LazyLoad height={100} offset={-10} placeholder={<Spinner />}>
+        <LazyLoad height={100} offset={100} placeholder={<Spinner />}>
           <MoviesList />
         </LazyLoad>
         <Pagination
